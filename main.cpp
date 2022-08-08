@@ -3,21 +3,21 @@
 int main()
 {
     // Initialise the digital pins D2 and D3 as outputs
-    DigitalOut blue(D2);
+    DigitalOut green(D2);
     DigitalOut red(D3);
 
-    // Initialise the digital pin BUTTON1 (the blue button) as an input
-    DigitalIn button(BUTTON1);
+    // Initialise the digital pins D4 and D5 as inputs with pullup resistors
+    DigitalIn PB1(D4, PullUp);
+    DigitalIn PB2(D5, PullUp);
     
     // Loop forever...
     while (true) {
-        
-        // Flash the blue LED: on for 100ms, off for 300ms
-        // Your code modifications should be made here
-        blue = true;
-        thread_sleep_for(100);
-        blue = false;
-        thread_sleep_for(300);
-        
+        // Is PB1 being pressed?
+        if (PB1 == false) {
+            // Light the red LED, extinguish the green
+            red = true;
+            green = false;
+        }
     }
+
 }
